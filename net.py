@@ -22,8 +22,10 @@ def ScenarioStop(ip:str, port:int):
 def SerialMovement(ip:str, port:int, serial: Serial):
     log.info("request thaht Serial movemnet!")
     req = serial.dump()
+    headers = {'Content-Type': 'application/json; charset=utf-8'}
+
     log.info("request dump data is : [{0}]".format(req))
-    result = requests.post("http://{0}:{1}/serial".format(ip,port), req)
+    result = requests.post("http://{0}:{1}/serial".format(ip,port), req, headers=headers)
     log.info("Receive Data : [{0}]".format(result))
     return result
     

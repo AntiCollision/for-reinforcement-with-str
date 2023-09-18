@@ -31,4 +31,4 @@ class Tools:
     def Action(self, joy: [Serial]):
         for item in joy:
             log.info("Joystick Move : [%s]".format(item.dump()))
-            net.SerialMovement(self.opt.getStrIP(), self.opt.getStrJoystickPort(), item)        
+            net.SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)        

@@ -37,4 +37,4 @@ class Serial:
         self.value = value
     
     def dump(self) -> str:
-        return json.dump({"type":self.type,"id":0,"value":self.value})
+        return json.dumps({"type":self.type,"id":0,"value":self.value}, separators=(',', ':'))
