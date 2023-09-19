@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name="for-str-simulator",
+    name="for_str_simulator",
     version="0.0.1",
     author="Joo Hyoung Cha",
     author_email="chacha@udon.party",
