@@ -2,7 +2,7 @@ from tools import *
 import time
 import random as rd
 
-t = Tools(opt=Option("210.107.245.190", 7000, 3333, "-", 0))
+t = Tools(opt=Option("210.107.245.190", 7000, 4005))
 t.Start()
 
 for _ in range(10):
