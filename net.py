@@ -30,15 +30,20 @@ def SerialMovement(ip:str, port:int, serial: Serial):
     return result
     
     
-def __receiver(udp, callback):
-    while True:
-        data, addr = udp.recvfrom(1024)
-        log.info("{0} -> {1}", addr, data.decode('utf-8'))
-        callback(data.decode('utf-8'), addr)
+# def __receiver(udp, callback):
+#     while True:
+#         data, addr = udp.recvfrom(1024)
+#         log.info("{0} -> {1}", addr, data.decode('utf-8'))
+#         callback(data.decode('utf-8'), addr)
 # nmea callbacker
 # recommend port value is 3000
-def NmeaReceiver(port: int, callback): 
-    udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    udp.bind(('0.0.0.0', port))
-    t = th.Thread(target=__receiver, args=(udp, callback))
-    t.start()
+def NmeaReceiver(ip: str, port: int): 
+    log.info("Get the State!")
+    print("http://{0}:{1}/state".format(ip,port))
+    result = requests.get("http://{0}:{1}/state".format(ip,port))
+    log.info("Receive Data : [{0}]".format(result))
+    return result.content.decode('utf-8')
+    # udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # udp.bind(('0.0.0.0', port))
+    # t = th.Thread(target=__receiver, args=(udp, callback))
+    # t.start()

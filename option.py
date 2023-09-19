@@ -3,12 +3,11 @@ import json
 from enum import Enum
 
 class Option:
-    def __init__(self, str_ip:str, str_macro_port:int, str_nmea_port: int, db_ip: str, db_port):
+    def __init__(self, str_ip:str, str_macro_port:int, db_port:int):
         log.info("create that option object")
         self.str_ip = str_ip
         self.str_macro_port = str_macro_port
-        self.str_nmea_port = str_nmea_port
-        self.db_ip = db_ip
+        # self.str_nmea_port = str_nmea_port
         self.db_port = db_port
 
     def getStrIP(self) -> str:
@@ -17,12 +16,8 @@ class Option:
     def getStrMacroPort(self) -> int:
         return self.str_macro_port
     
-    def getStrNMEAPort(self) -> int:
-        return self.str_nmea_port
-    
-    def getDatabaseIP(self) -> str:
-        return self.db_ip
-    
+    # def getStrNMEAPort(self) -> int:
+        # return self.str_nmea_port
     def getDatabasePort(self) -> int:
         return self.db_port
     
