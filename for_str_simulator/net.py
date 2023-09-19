@@ -1,8 +1,6 @@
 import logging as log
 import requests
-from option import Serial
-import socket
-import threading as th
+from .option import Serial
 
 def ScenarioStart(ip:str, port:int):
     log.info("Scenario Start!")

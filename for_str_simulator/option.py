@@ -1,6 +1,5 @@
 import logging as log
 import json
-from enum import Enum
 
 class Option:
     def __init__(self, str_ip:str, str_macro_port:int, db_port:int):
