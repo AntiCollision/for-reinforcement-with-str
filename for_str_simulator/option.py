@@ -2,12 +2,11 @@ import logging as log
 import json
 
 class Option:
-    def __init__(self, str_ip:str, str_macro_port:int, db_port:int):
+    def __init__(self, str_ip:str, str_macro_port:int):
         log.info("create that option object")
         self.str_ip = str_ip
         self.str_macro_port = str_macro_port
         # self.str_nmea_port = str_nmea_port
-        self.db_port = db_port
 
     def getStrIP(self) -> str:
         return self.str_ip
@@ -17,8 +16,6 @@ class Option:
     
     # def getStrNMEAPort(self) -> int:
         # return self.str_nmea_port
-    def getDatabasePort(self) -> int:
-        return self.db_port
     
 # $"{{\"type\":4,\"id\":0,\"value\":{_ludder}}}",
 # $"{{\"type\":6,\"id\":0,\"value\":{_engineL}}}",
