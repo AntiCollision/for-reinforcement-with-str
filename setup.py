@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="for_str_simulator",
-    version="0.1.1",
+    version="0.1.2",
     author="Joo Hyoung Cha",
     author_email="chacha@udon.party",
     url="https://github.com/AntiCollision/for-reinforcement-with-str.git",

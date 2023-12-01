@@ -36,7 +36,8 @@ class Tools:
         res = list(filter(fil, conv))
         return res
 
-    def Action(self, joy: [Serial]):
+    def Action(self, joy: [Serial], delay: float):
         for item in joy:
             log.info("Joystick Move : [%s]".format(item.dump()))
-            SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)        
+            SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
+            time.sleep(delay)
