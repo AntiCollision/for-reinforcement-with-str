@@ -36,8 +36,22 @@ class Tools:
         res = list(filter(fil, conv))
         return res
 
-    def Action(self, joy: [Serial], delay: float):
-        for item in joy:
+    # -1 ~ 1
+    # Ludder 0 ~ 1000
+    # Others : -1000 ~ 1000
+    def Action(self, ludder: float = None, engineL: float = None, engineR: float = None):
+        if ludder != None:
+            item = Serial(4, (ludder * 500) + 500)
             log.info("Joystick Move : [%s]".format(item.dump()))
             SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
-            time.sleep(delay)
+            time.sleep(0.8)
+        if engineL != None:
+            item = Serial(6, (ludder * 1000))
+            log.info("Joystick Move : [%s]".format(item.dump()))
+            SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
+            time.sleep(0.8)
+        if engineR != None:
+            item = Serial(8, (ludder * 1000))
+            log.info("Joystick Move : [%s]".format(item.dump()))
+            SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
+            time.sleep(0.8)
