@@ -1,5 +1,6 @@
 import logging as log
 import requests
+
 from .option import Serial
 
 def ScenarioStart(ip:str, port:int):
