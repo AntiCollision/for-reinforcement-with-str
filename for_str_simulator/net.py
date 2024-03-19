@@ -23,9 +23,9 @@ def SerialMovement(ip:str, port:int, serial: Serial):
     req = serial.dump()
     headers = {'Content-Type': 'application/json; charset=utf-8'}
 
-    log.info("request dump data is : [{0}]".format(req))
+    print("request dump data is : [{0}]".format(req))
     result = requests.post("http://{0}:{1}/serial".format(ip,port), req, headers=headers)
-    log.info("Receive Data : [{0}]".format(result))
+    print("Receive Data : [{0}]".format(result))
     return result
     
     
