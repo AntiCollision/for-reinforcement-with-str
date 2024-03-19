@@ -7,6 +7,9 @@ import pynmea2
 import re
 from datetime import datetime
 
+RUDDER_CHOICES = [ 114, 154, 205, 256, 307, 358, 409, 460, 511, 562, 613, 664, 716, 767, 818, 869, 910 ]
+ENGINE_CHOICES = [ 0, 205, 307, 409, 512, 613, 716, 818, 912, 1023 ]
+
 # def callback(rawdata, addr):
 #     data.append((dt.datetime.now(), rawdata))
         
@@ -41,10 +44,7 @@ def time_converter(x):
 
 
 def parse(date, text):
-    try:
-        return (time_converter(date), pynmea2.parse(text.replace(" ", "")))
-    except:
-        return None
+    return (time_converter(date), text.split(','))
 
 def fil(obj):
     return obj != None
@@ -55,11 +55,11 @@ class Tools:
     
     def Start(self):
         ScenarioStart(self.opt.getStrIP(), self.opt.getStrMacroPort())
-        time.sleep(15)
+        time.sleep(7)
 
     def Stop(self):
         ScenarioStop(self.opt.getStrIP(), self.opt.getStrMacroPort())
-        time.sleep(8)
+        time.sleep(2)
     
     def State(self):
         par = json.loads(NmeaReceiver(self.opt.getStrIP(), self.opt.getStrMacroPort()))
@@ -70,19 +70,15 @@ class Tools:
     # -1 ~ 1
     # Ludder 0 ~ 1000
     # Others : -1000 ~ 1000
-    def Action(self, ludder: float = None, engineL: float = None, engineR: float = None):
-        if ludder != None:
-            item = Serial(4, int((ludder * 500) + 500))
+    def Action(self, rudder: int = None, engine: int = None):
+        if rudder != None:      # Rudder Angle 0 ~ 1023
+            item = Serial(4, int(rudder))
             log.info("Joystick Move : [%s]".format(item.dump()))
             SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
-            time.sleep(0.8)
-        if engineL != None:
-            item = Serial(6, int((engineL * 1000)))
+            # time.sleep(1) 
+        if engine != None:     # Engine RPM 0 ~ 1023
+            item = Serial(6, int(engine))
             log.info("Joystick Move : [%s]".format(item.dump()))
             SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
-            time.sleep(0.8)
-        if engineR != None:
-            item = Serial(8, int((engineR * 1000)))
-            log.info("Joystick Move : [%s]".format(item.dump()))
-            SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
-            time.sleep(0.8)
+            # time.sleep(1)
+        time.sleep(0.05)
