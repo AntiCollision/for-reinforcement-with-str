@@ -71,14 +71,19 @@ class Tools:
     # Ludder 0 ~ 1000
     # Others : -1000 ~ 1000
     def Action(self, rudder: int = None, engine: int = None):
+        items = []
+        
         if rudder != None:      # Rudder Angle 0 ~ 1023
             item = Serial(4, int(rudder))
             log.info("Joystick Move : [%s]".format(item.dump()))
-            SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
+            items.append(item)
+            # SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
             # time.sleep(1) 
         if engine != None:     # Engine RPM 0 ~ 1023
             item = Serial(6, int(engine))
             log.info("Joystick Move : [%s]".format(item.dump()))
-            SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
+            items.append(item)
+            # SerialMovement(self.opt.getStrIP(), self.opt.getStrMacroPort(), item)
             # time.sleep(1)
+        SerialMovementArray(self.opt.getStrIP(), self.opt.getStrMacroPort(), items)
         time.sleep(0.05)
