@@ -27,7 +27,19 @@ def SerialMovement(ip:str, port:int, serial: Serial):
     result = requests.post("http://{0}:{1}/serial".format(ip,port), req, headers=headers)
     print("Receive Data : [{0}]".format(result))
     return result
-    
+
+def SerialMovementArray(ip:str, port:int, serial: [Serial]):
+    log.info("request thaht Serial movemnet!")
+    req = "["
+    req += ",".join(list(map(lambda x: x.dump(), serial)))
+    req += "]"
+
+    headers = {'Content-Type': 'application/json; charset=utf-8'}
+
+    print("request dump data is : [{0}]".format(req))
+    result = requests.post("http://{0}:{1}/serial_array".format(ip,port), req, headers=headers)
+    print("Receive Data : [{0}]".format(result))
+    return result
     
 # def __receiver(udp, callback):
 #     while True:
